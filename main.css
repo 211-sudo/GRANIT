@@ -78,7 +78,7 @@ nav ul li a:hover {
 }
 
 .fon1 {
-    background: url('../img/fon.svg') no-repeat center center;
+    background: url('img/fon.svg') no-repeat center center;
     background-size: 100% auto;
 }
 
