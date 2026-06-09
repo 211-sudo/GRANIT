@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГРАНИТ — Прогнозирование добычи</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="fon">
+        <div class="header-wrapper">
+            <header class="container">
+                <div class="logo">
+                    <img src="img/logo.svg" alt="">
+                    <span>ГРАНИТ</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">О проекте</a></li>
+                        <li><a href="#analytics">Анализ добычи</a></li>
+                        <li><a href="#forecast">Прогнозные данные</a></li>
+                        <li><a href="">Контакты</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="fon1">
+        <div class="info">
+            <img src="img/logo.svg" alt="">
+            <h1>ГРАНИТ</h1>
+            <h3>Прогнозирование добычи полезных ископаемых в Республике Татарстан</h3>
+            <p>Сайт для отслеживания данных по добыче ископаемых в реальном времени</p>
+        </div>
+    </div>
+
+    <div class="propusk">
+        <div class="simvol">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+        </div>
+    </div>
+
+    <div id="about" class="about">
+        <div class="text">
+            <h3>О проекте</h3>
+            <p>Цель проекта — оценить перспективные объемы добычи полезных ископаемых в Республике Татарстан с использованием ретроспективного анализа.</p>
+        </div>
+
+        <div class="blocks">
+            <div class="block">
+                <img src="img/sim1.svg" alt="">
+                <span>Анализ данных</span>
+                <p>Исследование динамики добычи нефти в Татарстане</p>
+            </div>
+            <div class="block">
+                <img src="img/sim2.svg" alt="">
+                <span>Моделирование</span>
+                <p>Графики прогнозов для наглядности и удобства</p>
+            </div>
+            <div class="block">
+                <img src="img/sim3.svg" alt="">
+                <span>Прогноз</span>
+                <p>Построение прогноза на 2026-2029 года</p>
+            </div>
+            <div class="block">
+                <img src="img/sim4.svg" alt="">
+                <span>Визуализация</span>
+                <p>Наглядное представление прогнозов</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="propusk">
+        <div class="simvol">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+        </div>
+    </div>
+
+    <div id="analytics" class="analytics">
+        <div class="analytics-header">
+            <h3>Анализ добычи</h3>
+            <p class="chart-subtitle">Сравнение добычи нефти по РФ и в Республике Татарстан</p>
+        </div>
+        <div class="chart-wrapper">
+            <div class="chart-status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Загрузка данных...</span>
+            </div>
+            <canvas id="oilChart"></canvas>
+        </div>
+    </div>
+
+    <div class="propusk">
+        <div class="simvol">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+            <img src="img/sim.svg" alt="">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbyZ73YcJqIJPsaSwS8zckXXPE8nmDHsWnVA3eDPtpIl1nEPKijiSyS8SGb73Qb6AjyCPQ/exec';
+        const POLL_INTERVAL = 5000;
+        let chart = null;
+
+        function parseData(rows) {
+            const years = [], tatarstan = [], rf = [];
+            for (const row of rows) {
+                const year = Number(row[0]);
+                const tat  = Number(row[1]);
+                const rfV  = Number(row[2]);
+                if (year && tat > 0 && rfV > 0) {
+                    years.push(year);
+                    tatarstan.push(tat);
+                    rf.push(rfV);
+                }
+            }
+            return years.length > 0 ? { years, tatarstan, rf } : null;
+        }
+
+        function renderChart(data) {
+            const ctx = document.getElementById('oilChart').getContext('2d');
+
+            if (chart) {
+                chart.data.labels = data.years;
+                chart.data.datasets[0].data = data.rf;
+                chart.data.datasets[1].data = data.tatarstan;
+                chart.update('active');
+                return;
+            }
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'Добыча нефти по РФ, млн. тонн',
+                            data: data.rf,
+                            backgroundColor: '#2E75B6',
+                            borderWidth: 0,
+                        },
+                        {
+                            label: 'Республика Татарстан, млн. тонн',
+                            data: data.tatarstan,
+                            backgroundColor: '#ED7D31',
+                            borderWidth: 0,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#DAC09C',
+                                font: { family: 'Montserrat', size: 13 },
+                                padding: 20,
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Сравнение добычи нефти по РФ и в Республике Татарстан',
+                            color: '#DAC09C',
+                            font: { family: 'Montserrat', size: 16, weight: '600' },
+                            padding: { bottom: 20 },
+                        },
+                        tooltip: {
+                            backgroundColor: '#2e1515',
+                            titleColor: '#DAC09C',
+                            bodyColor: '#DAC09C',
+                            borderColor: '#5a3030',
+                            borderWidth: 1,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Год',
+                                color: '#DAC09C',
+                                font: { family: 'Montserrat', size: 13 }
+                            },
+                            ticks: { color: '#DAC09C', font: { family: 'Montserrat' } },
+                            grid: { color: 'rgba(218,192,156,0.08)' },
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Объем добычи нефти млн. тонн',
+                                color: '#DAC09C',
+                                font: { family: 'Montserrat', size: 13 }
+                            },
+                            min: 0,
+                            max: 600,
+                            ticks: { color: '#DAC09C', font: { family: 'Montserrat' } },
+                            grid: { color: 'rgba(218,192,156,0.1)' },
+                        }
+                    }
+                }
+            });
+        }
+
+        async function loadAndRender() {
+            const dot  = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+
+            dot.style.background = '#DAC09C';
+            text.textContent = 'Получаю данные...';
+
+            try {
+                const res = await fetch(SCRIPT_URL, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+
+                const rows = await res.json();
+                const data = parseData(rows);
+                if (!data) throw new Error('Данные пусты или неверный формат');
+
+                renderChart(data);
+                dot.style.background = '#88B87A';
+                text.textContent = 'Обновлено: ' + new Date().toLocaleTimeString('ru-RU');
+            } catch (e) {
+                dot.style.background = '#c04040';
+                text.textContent = 'Ошибка: ' + e.message;
+                console.error(e);
+            }
+        }
+
+        loadAndRender();
+        setInterval(loadAndRender, POLL_INTERVAL);
+    </script>
+</body>

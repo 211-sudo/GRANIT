@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    color: #DAC09C;
+    font-size: 16px;
+    background: #452020;
+}
+
+a {
+    text-decoration: none;
+    color: #DAC09C;
+}
+
+img {
+    max-width: 100%;
+}
+
+.header-wrapper {
+    background: #445B3B;
+}
+
+.container {
+    max-width: 1400px;
+    
+}
+
+.header-wrapper .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    padding: 6px 10px;
+    margin: 0;
+    gap: 100px;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.logo span {
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+nav {
+    flex-shrink: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 150px;
+    margin-right: 30px;
+}
+
+nav ul li a {
+    font-size: 29px;
+    color: #DAC09C;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+.fon1 {
+    background: url('../img/fon.svg') no-repeat center center;
+    background-size: 100% auto;
+}
+
+.fon1 .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 150px 0;
+}
+
+.fon1 .info img {
+    width: 160px;
+    height: auto;
+    margin-bottom: 40px;
+    filter: brightness(1.1);
+}
+
+.fon1 .info h1 {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.fon1 .info h3 {
+    font-size: 40px;
+    font-weight: 700;
+    width: 1000px;
+    margin-bottom: 30px;
+}
+
+.fon1 .info p {
+    font-size: 32px;
+    width: 800px;
+}
+
+.propusk {
+    background: #445B3B;
+    padding: 10px 80px;
+}
+
+.propusk .simvol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.propusk .simvol img {
+    width: 110px;
+    height: auto;
+    opacity: 0.8;
+}
+
+.about .text {
+    text-align: center;
+}
+
+.about .text h3 {
+    font-size: 46px;
+    font-weight: 700;
+    padding: 50px;
+}
+
+.about .text p {
+    font-size: 29px;
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.about .blocks {
+    display: flex;
+    justify-content: space-between;
+    padding: 100px;
+    align-items: stretch;
+}
+
+.about .blocks .block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    width: 23%;
+}
+
+.about .blocks .block span {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.about .blocks .block p {
+    width: 250px;
+    font-size: 20px;
+}
+
+/* ── Секция «Анализ добычи» ── */
+
+.analytics {
+    padding: 60px 80px;
+    background: #3a1a1a;
+}
+
+.analytics-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.analytics-header h3 {
+    font-size: 46px;
+    font-weight: 700;
+    padding-bottom: 16px;
+}
+
+.chart-subtitle {
+    font-size: 22px;
+    color: #c4a07c;
+}
+
+.chart-wrapper {
+    background: #2e1515;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.chart-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #a08060;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #666;
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+}
