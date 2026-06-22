@@ -8,23 +8,27 @@
 </head>
 
 <body>
-    <div class="fon">
-        <div class="header-wrapper">
-            <header class="container">
-                <div class="logo">
-                    <img src="img/logo.svg" alt="">
-                    <span>ГРАНИТ</span>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#about">О проекте</a></li>
-                        <li><a href="#analytics">Анализ добычи</a></li>
-                        <li><a href="#forecast">Прогнозные данные</a></li>
-                        <li><a href="">Контакты</a></li>
-                    </ul>
-                </nav>
-            </header>
-        </div>
+    <div class="header-wrapper">
+        <header class="container">
+            <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+                <img src="img/logo.svg" alt="">
+                <span>ГРАНИТ</span>
+            </a>
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#about">О проекте</a></li>
+                    <li><a href="#analytics">Анализ добычи</a></li>
+                    <li><a href="#forecast">Прогнозные данные</a></li>
+                    <li><a href="#datalens">Дашборд</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
     </div>
 
     <div class="fon1">
@@ -33,20 +37,11 @@
             <h1>ГРАНИТ</h1>
             <h3>Прогнозирование добычи полезных ископаемых в Республике Татарстан</h3>
             <p>Сайт для отслеживания данных по добыче ископаемых в реальном времени</p>
+            <a href="#analytics" class="hero-btn">Смотреть данные</a>
         </div>
     </div>
 
-    <div class="propusk">
-        <div class="simvol">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-        </div>
-    </div>
-
-    <div id="about" class="about">
+    <div id="about" class="about fade-in">
         <div class="text">
             <h3>О проекте</h3>
             <p>Цель проекта — оценить перспективные объемы добычи полезных ископаемых в Республике Татарстан с использованием ретроспективного анализа.</p>
@@ -77,17 +72,7 @@
         </div>
     </div>
 
-    <div class="propusk">
-        <div class="simvol">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-        </div>
-    </div>
-
-    <div id="analytics" class="analytics">
+    <div id="analytics" class="analytics fade-in">
         <div class="analytics-header">
             <h3>Анализ добычи</h3>
             <p class="chart-subtitle">Сравнение добычи нефти по РФ и в Республике Татарстан</p>
@@ -101,147 +86,353 @@
         </div>
     </div>
 
-    <div class="propusk">
-        <div class="simvol">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
-            <img src="img/sim.svg" alt="">
+    <div id="forecast" class="forecast fade-in">
+        <div class="forecast-header">
+            <h3>Прогнозные данные</h3>
+            <p class="chart-subtitle">Прогноз ключевых показателей добычи на 2026–2029 годы</p>
+        </div>
+
+        <div class="forecast-main-chart">
+            <div class="chart-wrapper">
+                <div class="chart-status">
+                    <span class="status-dot" id="forecastDot1"></span>
+                    <span id="forecastText1">Загрузка данных...</span>
+                </div>
+                <canvas id="forecastChart1"></canvas>
+                <button class="zoom-reset" onclick="if(grafikDobychi)grafikDobychi.resetZoom()">Сбросить масштаб</button>
+            </div>
+            <p class="chart-caption">Прогноз добычи нефти в Татарстане на 2029 год</p>
+        </div>
+
+        <div class="forecast-row">
+            <div class="forecast-item">
+                <div class="chart-wrapper">
+                    <div class="chart-status">
+                        <span class="status-dot" id="forecastDot2"></span>
+                        <span id="forecastText2">Загрузка данных...</span>
+                    </div>
+                    <canvas id="forecastChart2"></canvas>
+                    <button class="zoom-reset" onclick="if(grafikSkvazhin)grafikSkvazhin.resetZoom()">Сбросить масштаб</button>
+                </div>
+                <p class="chart-caption">Прогноз действующих скважин в Республике Татарстан на 2029 год</p>
+            </div>
+            <div class="forecast-item">
+                <div class="chart-wrapper">
+                    <div class="chart-status">
+                        <span class="status-dot" id="forecastDot3"></span>
+                        <span id="forecastText3">Загрузка данных...</span>
+                    </div>
+                    <canvas id="forecastChart3"></canvas>
+                    <button class="zoom-reset" onclick="if(grafikInvesticij)grafikInvesticij.resetZoom()">Сбросить масштаб</button>
+                </div>
+                <p class="chart-caption">Прогноз инвестиций в добычу нефти в Республике Татарстан на 2029 год</p>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbyZ73YcJqIJPsaSwS8zckXXPE8nmDHsWnVA3eDPtpIl1nEPKijiSyS8SGb73Qb6AjyCPQ/exec';
-        const POLL_INTERVAL = 5000;
-        let chart = null;
+    <div id="datalens" class="datalens-section fade-in">
+        <div class="datalens-header">
+            <h3>Интерактивный дашборд</h3>
+        </div>
+        <div class="datalens-wrapper">
+            <iframe src="https://datalens.yandex/fxmd3xfto02ez?state=15bf62d1125&_embedded=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
 
-        function parseData(rows) {
-            const years = [], tatarstan = [], rf = [];
-            for (const row of rows) {
-                const year = Number(row[0]);
-                const tat  = Number(row[1]);
-                const rfV  = Number(row[2]);
-                if (year && tat > 0 && rfV > 0) {
-                    years.push(year);
-                    tatarstan.push(tat);
-                    rf.push(rfV);
-                }
-            }
-            return years.length > 0 ? { years, tatarstan, rf } : null;
+    <footer id="contacts" class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="img/logo.svg" alt="">
+                    <span>ГРАНИТ</span>
+                </div>
+                <p>Прогнозирование добычи полезных ископаемых в Республике Татарстан</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <ul class="footer-nav">
+                    <li><a href="#about">О проекте</a></li>
+                    <li><a href="#analytics">Анализ добычи</a></li>
+                    <li><a href="#forecast">Прогнозные данные</a></li>
+                    <li><a href="#datalens">Дашборд</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p>prognoz@mail.ru</p>
+                <p>г. Тула, 2026</p>
+            </div>
+            <div class="footer-col footer-col-right">
+                <h4>Источники данных</h4>
+                <p>Росстат, Министерство энергетики РФ, Татнефть</p>
+                <p style="margin-top: 12px;">Данные носят аналитический характер и предназначены для ознакомления.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ГРАНИТ. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2"></script>
+    <script>
+        // Ссылка на Google Apps Script API
+        var url = 'https://script.google.com/macros/s/AKfycbzZdl4_4N4LZZyKEFLsW0_yHxckJhaM1w9Tcc0kTsyA9jNGkJcr1YpLb-dzqHYIpndZJA/exec';
+
+        // Переменные для графиков
+        var stolbchatyj = null;
+        var grafikDobychi = null;
+        var grafikSkvazhin = null;
+        var grafikInvesticij = null;
+
+        // Настройки масштабирования для линейных графиков
+        var nastrojkiZoom = {
+            pan: { enabled: true, mode: 'x' },
+            zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' }
+        };
+
+        // Загрузка данных и отрисовка графиков
+        function zagruzitDannye() {
+            fetch(url + '?t=' + Date.now())
+                .then(function(res) { return res.json(); })
+                .then(function(rows) {
+
+                    // Разбираем данные из таблицы
+                    var godyStolb = [], rfData = [], tatData = [];
+                    var gody = [];
+                    var dobychaFakt = [], dobychaPrognoz = [];
+                    var skvazhinyFakt = [], skvazhinyPrognoz = [];
+                    var investFakt = [], investPrognoz = [];
+
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        var god = Number(row[0]);
+                        if (!god) continue;
+
+                        gody.push(god);
+
+                        var tat = Number(row[1]) || 0;
+                        var rf = Number(row[2]) || 0;
+                        var dob = Number(row[5]) || 0;
+                        var skv = Number(row[6]) || 0;
+                        var inv = Number(row[7]) || 0;
+
+                        // Столбчатый график — только исторические данные
+                        if (tat > 0 && rf > 0) {
+                            godyStolb.push(god);
+                            tatData.push(tat);
+                            rfData.push(rf);
+                        }
+
+                        // Линейные графики — делим на факт и прогноз
+                        var etsFakt = tat > 0;
+
+                        dobychaFakt.push(etsFakt && dob > 0 ? dob : null);
+                        dobychaPrognoz.push(!etsFakt && dob > 0 ? dob : null);
+
+                        skvazhinyFakt.push(etsFakt && skv > 0 ? skv : null);
+                        skvazhinyPrognoz.push(!etsFakt && skv > 0 ? skv : null);
+
+                        investFakt.push(etsFakt && inv > 0 ? inv : null);
+                        investPrognoz.push(!etsFakt && inv > 0 ? inv : null);
+                    }
+
+                    // Соединяем последнюю точку факта с первой точкой прогноза
+                    soedinit(dobychaFakt, dobychaPrognoz);
+                    soedinit(skvazhinyFakt, skvazhinyPrognoz);
+                    soedinit(investFakt, investPrognoz);
+
+                    // Рисуем столбчатый график
+                    narisavatStolby(godyStolb, rfData, tatData);
+
+                    // Рисуем линейные графики
+                    narisavatLiniyu('forecastChart1', 'Прогноз добычи нефти в Республике Татарстан',
+                        gody, dobychaFakt, dobychaPrognoz, 'млн. тонн', 0, 40, 5, 'grafikDobychi');
+
+                    narisavatLiniyu('forecastChart2', 'Действующие скважины в Республике Татарстан',
+                        gody, skvazhinyFakt, skvazhinyPrognoz, 'Количество скважин', null, null, null, 'grafikSkvazhin');
+
+                    narisavatLiniyu('forecastChart3', 'Инвестиции в добычу нефти в Республике Татарстан',
+                        gody, investFakt, investPrognoz, 'млрд. рублей', null, null, null, 'grafikInvesticij');
+
+                    // Обновляем статус
+                    var vremya = new Date().toLocaleTimeString('ru-RU');
+                    pokazatStatus('statusDot', 'statusText', '#88B87A', 'Обновлено: ' + vremya);
+                    pokazatStatus('forecastDot1', 'forecastText1', '#88B87A', 'Обновлено: ' + vremya);
+                    pokazatStatus('forecastDot2', 'forecastText2', '#88B87A', 'Обновлено: ' + vremya);
+                    pokazatStatus('forecastDot3', 'forecastText3', '#88B87A', 'Обновлено: ' + vremya);
+                })
+                .catch(function(err) {
+                    console.error(err);
+                    pokazatStatus('statusDot', 'statusText', '#c04040', 'Ошибка загрузки');
+                    pokazatStatus('forecastDot1', 'forecastText1', '#c04040', 'Ошибка загрузки');
+                    pokazatStatus('forecastDot2', 'forecastText2', '#c04040', 'Ошибка загрузки');
+                    pokazatStatus('forecastDot3', 'forecastText3', '#c04040', 'Ошибка загрузки');
+                });
         }
 
-        function renderChart(data) {
-            const ctx = document.getElementById('oilChart').getContext('2d');
+        // Соединяет последнюю точку факта с прогнозом
+        function soedinit(fakt, prognoz) {
+            for (var i = fakt.length - 1; i >= 0; i--) {
+                if (fakt[i] !== null) {
+                    prognoz[i] = fakt[i];
+                    break;
+                }
+            }
+        }
 
-            if (chart) {
-                chart.data.labels = data.years;
-                chart.data.datasets[0].data = data.rf;
-                chart.data.datasets[1].data = data.tatarstan;
-                chart.update('active');
+        // Обновление статуса (точка + текст)
+        function pokazatStatus(dotId, textId, cvet, soobshenie) {
+            document.getElementById(dotId).style.background = cvet;
+            document.getElementById(textId).textContent = soobshenie;
+        }
+
+        // Столбчатый график
+        function narisavatStolby(gody, rf, tat) {
+            if (stolbchatyj) {
+                stolbchatyj.data.labels = gody;
+                stolbchatyj.data.datasets[0].data = rf;
+                stolbchatyj.data.datasets[1].data = tat;
+                stolbchatyj.update();
                 return;
             }
 
-            chart = new Chart(ctx, {
+            stolbchatyj = new Chart(document.getElementById('oilChart'), {
                 type: 'bar',
                 data: {
-                    labels: data.years,
+                    labels: gody,
                     datasets: [
-                        {
-                            label: 'Добыча нефти по РФ, млн. тонн',
-                            data: data.rf,
-                            backgroundColor: '#2E75B6',
-                            borderWidth: 0,
-                        },
-                        {
-                            label: 'Республика Татарстан, млн. тонн',
-                            data: data.tatarstan,
-                            backgroundColor: '#ED7D31',
-                            borderWidth: 0,
-                        }
+                        { label: 'Добыча нефти по РФ, млн. тонн', data: rf, backgroundColor: '#2E75B6' },
+                        { label: 'Республика Татарстан, млн. тонн', data: tat, backgroundColor: '#ED7D31' }
                     ]
                 },
                 options: {
                     responsive: true,
-                    interaction: { mode: 'index', intersect: false },
                     plugins: {
-                        legend: {
-                            labels: {
-                                color: '#DAC09C',
-                                font: { family: 'Montserrat', size: 13 },
-                                padding: 20,
-                            }
-                        },
                         title: {
                             display: true,
                             text: 'Сравнение добычи нефти по РФ и в Республике Татарстан',
-                            color: '#DAC09C',
                             font: { family: 'Montserrat', size: 16, weight: '600' },
-                            padding: { bottom: 20 },
+                            color: '#555'
                         },
-                        tooltip: {
-                            backgroundColor: '#2e1515',
-                            titleColor: '#DAC09C',
-                            bodyColor: '#DAC09C',
-                            borderColor: '#5a3030',
-                            borderWidth: 1,
-                        }
+                        tooltip: { backgroundColor: '#fff', titleColor: '#333', bodyColor: '#555', borderColor: '#E2E8F0', borderWidth: 1 }
                     },
                     scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Год',
-                                color: '#DAC09C',
-                                font: { family: 'Montserrat', size: 13 }
-                            },
-                            ticks: { color: '#DAC09C', font: { family: 'Montserrat' } },
-                            grid: { color: 'rgba(218,192,156,0.08)' },
+                        x: { title: { display: true, text: 'Год' } },
+                        y: { title: { display: true, text: 'млн. тонн' } }
+                    }
+                }
+            });
+        }
+
+        // Линейный график
+        function narisavatLiniyu(canvasId, zagolovok, gody, fakt, prognoz, podpisY, minY, maxY, shagY, imyaGrafika) {
+            var est = window[imyaGrafika];
+
+            if (est) {
+                est.data.labels = gody;
+                est.data.datasets[0].data = fakt;
+                if (est.data.datasets[1]) est.data.datasets[1].data = prognoz;
+                est.update();
+                return;
+            }
+
+            var nabory = [
+                {
+                    label: 'Факт',
+                    data: fakt,
+                    borderColor: '#2E75B6',
+                    backgroundColor: '#2E75B6',
+                    pointBackgroundColor: '#2E75B6',
+                    pointRadius: 3,
+                    borderWidth: 2,
+                    tension: 0.1
+                }
+            ];
+
+            // Добавляем прогноз если есть данные
+            var estPrognoz = false;
+            for (var i = 0; i < prognoz.length; i++) {
+                if (prognoz[i] !== null) { estPrognoz = true; break; }
+            }
+
+            if (estPrognoz) {
+                nabory.push({
+                    label: 'Прогноз',
+                    data: prognoz,
+                    borderColor: '#c04040',
+                    backgroundColor: '#c04040',
+                    pointBackgroundColor: '#c04040',
+                    pointRadius: 3,
+                    borderWidth: 2,
+                    borderDash: [8, 4],
+                    tension: 0.1
+                });
+            }
+
+            window[imyaGrafika] = new Chart(document.getElementById(canvasId), {
+                type: 'line',
+                data: { labels: gody, datasets: nabory },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: zagolovok,
+                            font: { family: 'Montserrat', size: 14, weight: '600' },
+                            color: '#555'
                         },
+                        tooltip: { backgroundColor: '#fff', titleColor: '#333', bodyColor: '#555', borderColor: '#E2E8F0', borderWidth: 1 },
+                        zoom: nastrojkiZoom
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'Год' } },
                         y: {
-                            title: {
-                                display: true,
-                                text: 'Объем добычи нефти млн. тонн',
-                                color: '#DAC09C',
-                                font: { family: 'Montserrat', size: 13 }
-                            },
-                            min: 0,
-                            max: 600,
-                            ticks: { color: '#DAC09C', font: { family: 'Montserrat' } },
-                            grid: { color: 'rgba(218,192,156,0.1)' },
+                            title: { display: true, text: podpisY },
+                            min: minY,
+                            max: maxY,
+                            ticks: { stepSize: shagY }
                         }
                     }
                 }
             });
         }
 
-        async function loadAndRender() {
-            const dot  = document.getElementById('statusDot');
-            const text = document.getElementById('statusText');
+        // Запуск и обновление каждые 5 секунд
+        zagruzitDannye();
+        setInterval(zagruzitDannye, 5000);
 
-            dot.style.background = '#DAC09C';
-            text.textContent = 'Получаю данные...';
+        // Бургер-меню
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('mainNav');
 
-            try {
-                const res = await fetch(SCRIPT_URL, { cache: 'no-store' });
-                if (!res.ok) throw new Error('HTTP ' + res.status);
+        burger.onclick = function() {
+            burger.classList.toggle('active');
+            nav.classList.toggle('open');
+        };
 
-                const rows = await res.json();
-                const data = parseData(rows);
-                if (!data) throw new Error('Данные пусты или неверный формат');
-
-                renderChart(data);
-                dot.style.background = '#88B87A';
-                text.textContent = 'Обновлено: ' + new Date().toLocaleTimeString('ru-RU');
-            } catch (e) {
-                dot.style.background = '#c04040';
-                text.textContent = 'Ошибка: ' + e.message;
-                console.error(e);
-            }
+        var links = nav.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick = function() {
+                burger.classList.remove('active');
+                nav.classList.remove('open');
+            };
         }
 
-        loadAndRender();
-        setInterval(loadAndRender, POLL_INTERVAL);
+        // Анимация появления при скролле
+        var observer = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('visible');
+                    observer.unobserve(entries[i].target);
+                }
+            }
+        }, { threshold: 0.15 });
+
+        var fadeElements = document.querySelectorAll('.fade-in');
+        for (var i = 0; i < fadeElements.length; i++) {
+            observer.observe(fadeElements[i]);
+        }
     </script>
 </body>

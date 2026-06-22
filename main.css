@@ -1,21 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    color: #DAC09C;
+    color: #2D3748;
     font-size: 16px;
-    background: #452020;
+    background: #ffffff;
+    overflow-x: hidden;
 }
 
 a {
     text-decoration: none;
-    color: #DAC09C;
+    color: #2B4C7E;
 }
 
 img {
@@ -23,23 +29,22 @@ img {
 }
 
 .header-wrapper {
-    background: #445B3B;
-}
-
-.container {
-    max-width: 1400px;
-    
+    background: #2B4C7E;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .header-wrapper .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 100%;
-    padding: 6px 10px;
-    margin: 0;
-    gap: 100px;
-    box-sizing: border-box;
+    max-width: 1800px;
+    width: 100%;
+    padding: 8px 40px;
+    margin: 0 auto;
+    gap: 40px;
 }
 
 .logo {
@@ -47,39 +52,50 @@ img {
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 80px;
+    filter: brightness(0) invert(1);
 }
 
 .logo span {
-    font-size: 40px;
+    font-size: 36px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: #ffffff;
 }
 
 nav {
-    flex-shrink: 0;
+    flex: 1;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 150px;
-    margin-right: 30px;
+    justify-content: space-evenly;
 }
 
 nav ul li a {
-    font-size: 29px;
-    color: #DAC09C;
+    font-size: 22px;
+    color: #ffffff;
     text-decoration: none;
     white-space: nowrap;
+    transition: color 0.25s, opacity 0.25s;
 }
 
 nav ul li a:hover {
-    color: #fff;
+    color: #BDD4F0;
+    opacity: 0.9;
 }
 
 .fon1 {
-    background: url('img/fon.svg') no-repeat center center;
-    background-size: 100% auto;
+    background: url('../img/fon.svg') no-repeat center center;
+    background-size: cover;
+    background-color: #2B4C7E;
+    overflow: hidden;
 }
 
 .fon1 .info {
@@ -87,50 +103,66 @@ nav ul li a:hover {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 150px 0;
+    padding: 150px 20px;
+    overflow: hidden;
 }
 
 .fon1 .info img {
     width: 160px;
+    max-width: 40%;
     height: auto;
     margin-bottom: 40px;
-    filter: brightness(1.1);
+    filter: brightness(0) invert(1);
 }
 
 .fon1 .info h1 {
     font-size: 64px;
     font-weight: 700;
     margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .fon1 .info h3 {
-    font-size: 40px;
-    font-weight: 700;
-    width: 1000px;
-    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 600;
+    max-width: 900px;
+    margin-bottom: 24px;
+    color: #ffffff;
+    line-height: 1.4;
 }
 
 .fon1 .info p {
-    font-size: 32px;
-    width: 800px;
+    font-size: 20px;
+    max-width: 700px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 36px;
 }
 
-.propusk {
-    background: #445B3B;
-    padding: 10px 80px;
+
+.hero-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #ffffff;
+    color: #2B4C7E;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
-.propusk .simvol {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.hero-btn:hover {
+    background: #EDF2F7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    color: #2B4C7E;
 }
 
-.propusk .simvol img {
-    width: 110px;
-    height: auto;
-    opacity: 0.8;
+.about {
+    padding: 60px 80px;
 }
 
 .about .text {
@@ -140,47 +172,62 @@ nav ul li a:hover {
 .about .text h3 {
     font-size: 46px;
     font-weight: 700;
-    padding: 50px;
+    padding: 0 0 16px;
+    color: #1A365D;
 }
 
 .about .text p {
-    font-size: 29px;
-    width: 1300px;
+    font-size: 22px;
+    max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
+    color: #4A5568;
+    line-height: 1.6;
 }
 
 .about .blocks {
     display: flex;
-    justify-content: space-between;
-    padding: 100px;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 80px 20px;
     align-items: stretch;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .about .blocks .block {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     text-align: center;
     width: 23%;
 }
 
+.about .blocks .block img {
+    width: 100px;
+    height: 100px;
+}
+
 .about .blocks .block span {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
-    padding: 20px;
+    padding: 10px 0 6px;
+    color: #1A365D;
 }
 
 .about .blocks .block p {
-    width: 250px;
-    font-size: 20px;
+    max-width: 250px;
+    font-size: 15px;
+    color: #4A5568;
+    line-height: 1.5;
 }
 
 /* ── Секция «Анализ добычи» ── */
 
 .analytics {
     padding: 60px 80px;
-    background: #3a1a1a;
+    background: #F5F7FA;
 }
 
 .analytics-header {
@@ -192,20 +239,42 @@ nav ul li a:hover {
     font-size: 46px;
     font-weight: 700;
     padding-bottom: 16px;
+    color: #1A365D;
 }
 
 .chart-subtitle {
     font-size: 22px;
-    color: #c4a07c;
+    color: #718096;
 }
 
 .chart-wrapper {
-    background: #2e1515;
+    background: #ffffff;
     border-radius: 12px;
     padding: 30px;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid #E2E8F0;
+}
+
+.zoom-reset {
+    display: block;
+    margin: 12px auto 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    padding: 6px 16px;
+    border: 1px solid #CBD5E0;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #718096;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.zoom-reset:hover {
+    border-color: #2B4C7E;
+    color: #2B4C7E;
 }
 
 .chart-status {
@@ -214,14 +283,14 @@ nav ul li a:hover {
     gap: 8px;
     margin-bottom: 16px;
     font-size: 13px;
-    color: #a08060;
+    color: #718096;
 }
 
 .status-dot {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: #666;
+    background: #A0AEC0;
     flex-shrink: 0;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -229,4 +298,651 @@ nav ul li a:hover {
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50%       { opacity: 0.35; }
+}
+
+.forecast-main-chart {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ── Секция «Прогнозные данные» ── */
+
+.forecast {
+    padding: 60px 80px;
+    background: #ffffff;
+    border-top: 1px solid #E2E8F0;
+}
+
+.forecast-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.forecast-header h3 {
+    font-size: 46px;
+    font-weight: 700;
+    padding-bottom: 16px;
+    color: #1A365D;
+}
+
+.forecast-row {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1260px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.forecast-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.chart-caption {
+    text-align: center;
+    font-size: 18px;
+    color: #718096;
+    margin-top: 16px;
+    padding: 0 20px;
+}
+
+/* ── Секция «Дашборд» ── */
+
+.datalens-section {
+    padding: 60px 80px;
+    background: #F5F7FA;
+}
+
+.datalens-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.datalens-header h3 {
+    font-size: 46px;
+    font-weight: 700;
+    padding-bottom: 16px;
+    color: #1A365D;
+}
+
+.datalens-wrapper {
+    max-width: 1560px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid #E2E8F0;
+}
+
+.datalens-wrapper iframe {
+    width: 100%;
+    height: 1050px;
+    border: none;
+    display: block;
+}
+
+/* ── Футер ── */
+
+.footer {
+    background: #1A365D;
+    padding: 60px 80px;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 60px;
+    max-width: 1800px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+.footer-col p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.footer-logo img {
+    width: 40px;
+    filter: brightness(0) invert(1);
+}
+
+.footer-logo span {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.footer-col-right {
+    text-align: right;
+}
+
+.footer-nav {
+    list-style: none;
+}
+
+.footer-nav li {
+    margin-bottom: 8px;
+}
+
+.footer-nav li a {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-nav li a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    max-width: 1800px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin-top: 40px;
+    padding-top: 24px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+}
+
+/* ── Анимация появления ── */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Бургер-меню ── */
+
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.burger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.burger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Адаптив ── */
+
+@media (max-width: 1200px) {
+    .header-wrapper .container {
+        padding: 10px 24px;
+        gap: 24px;
+    }
+
+    nav ul li a {
+        font-size: 17px;
+    }
+
+    .logo span {
+        font-size: 32px;
+    }
+
+    .fon1 .info {
+        padding: 100px 40px;
+    }
+
+    .fon1 .info h1 {
+        font-size: 48px;
+    }
+
+    .fon1 .info h3 {
+        font-size: 24px;
+    }
+
+    .fon1 .info p {
+        font-size: 18px;
+    }
+
+    .about,
+    .analytics,
+    .forecast,
+    .datalens-section,
+    .footer {
+        padding: 50px 40px;
+    }
+
+    .about .text h3,
+    .analytics-header h3,
+    .forecast-header h3,
+    .datalens-header h3 {
+        font-size: 34px;
+    }
+
+    .about .text p {
+        font-size: 18px;
+    }
+
+    .about .blocks {
+        padding: 30px 0 10px;
+        gap: 24px;
+    }
+
+    .about .blocks .block {
+        width: auto;
+        flex: 1;
+    }
+
+    .chart-subtitle {
+        font-size: 18px;
+    }
+
+    .chart-caption {
+        font-size: 15px;
+    }
+
+    .forecast-row {
+        gap: 20px;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .footer-col-right {
+        text-align: left;
+    }
+
+    .datalens-wrapper iframe {
+        height: 800px;
+    }
+}
+
+@media (max-width: 900px) {
+    .burger {
+        display: flex;
+    }
+
+    .header-wrapper .container {
+        padding: 10px 20px;
+        gap: 0;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        flex: 1;
+    }
+
+    .logo span {
+        font-size: 28px;
+    }
+
+    .logo img {
+        width: 36px;
+    }
+
+    nav {
+        flex-basis: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+
+    nav.open {
+        max-height: 300px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 8px 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px 0;
+        font-size: 17px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav ul li:last-child a {
+        border-bottom: none;
+    }
+
+    .fon1 .info {
+        padding: 70px 24px;
+    }
+
+    .fon1 .info img {
+        width: 100px;
+        margin-bottom: 24px;
+    }
+
+    .fon1 .info h1 {
+        font-size: 40px;
+    }
+
+    .fon1 .info h3 {
+        font-size: 20px;
+    }
+
+    .fon1 .info p {
+        font-size: 16px;
+        padding: 0 12px;
+    }
+
+    .hero-btn {
+        font-size: 16px;
+        padding: 12px 32px;
+    }
+
+    .about,
+    .analytics,
+    .forecast,
+    .datalens-section,
+    .footer {
+        padding: 40px 20px;
+    }
+
+    .about .text h3,
+    .analytics-header h3,
+    .forecast-header h3,
+    .datalens-header h3 {
+        font-size: 28px;
+    }
+
+    .about .text p {
+        font-size: 16px;
+    }
+
+    .about .blocks {
+        flex-wrap: wrap;
+        gap: 24px;
+        padding: 24px 0;
+    }
+
+    .about .blocks .block {
+        width: 45%;
+        flex: none;
+    }
+
+    .about .blocks .block img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .about .blocks .block span {
+        font-size: 16px;
+    }
+
+    .about .blocks .block p {
+        font-size: 14px;
+    }
+
+    .chart-subtitle {
+        font-size: 16px;
+    }
+
+    .chart-wrapper {
+        padding: 20px 16px;
+        border-radius: 10px;
+    }
+
+    .forecast-main-chart {
+        max-width: 100%;
+    }
+
+    .forecast-row {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .chart-caption {
+        font-size: 14px;
+        padding: 0 8px;
+    }
+
+    .datalens-wrapper iframe {
+        height: 600px;
+    }
+
+    .datalens-wrapper {
+        border-radius: 8px;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer-logo span {
+        font-size: 22px;
+    }
+
+    .footer-col h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .footer-col p,
+    .footer-nav li a {
+        font-size: 14px;
+    }
+
+    .footer-bottom {
+        margin-top: 24px;
+        padding-top: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-wrapper .container {
+        padding: 8px 16px;
+    }
+
+    .logo img {
+        width: 30px;
+    }
+
+    .logo span {
+        font-size: 22px;
+    }
+
+    nav ul li a {
+        font-size: 15px;
+        padding: 10px 0;
+    }
+
+    .fon1 .info {
+        padding: 50px 16px;
+    }
+
+    .fon1 .info img {
+        width: 70px;
+        margin-bottom: 16px;
+    }
+
+    .fon1 .info h1 {
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+
+    .fon1 .info h3 {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .fon1 .info p {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+
+    .hero-btn {
+        font-size: 14px;
+        padding: 10px 28px;
+    }
+
+    .about,
+    .analytics,
+    .forecast,
+    .datalens-section,
+    .footer {
+        padding: 32px 14px;
+    }
+
+    .about .text h3,
+    .analytics-header h3,
+    .forecast-header h3,
+    .datalens-header h3 {
+        font-size: 22px;
+        padding-bottom: 10px;
+    }
+
+    .about .text p {
+        font-size: 14px;
+    }
+
+    .about .blocks {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    .about .blocks .block {
+        width: 100%;
+    }
+
+    .about .blocks .block img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .about .blocks .block span {
+        font-size: 15px;
+        padding: 8px 0 4px;
+    }
+
+    .about .blocks .block p {
+        font-size: 13px;
+    }
+
+    .chart-subtitle {
+        font-size: 14px;
+    }
+
+    .chart-wrapper {
+        padding: 14px 10px;
+        border-radius: 8px;
+    }
+
+    .chart-status {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+    .chart-caption {
+        font-size: 13px;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .analytics-header,
+    .forecast-header,
+    .datalens-header {
+        margin-bottom: 24px;
+    }
+
+    .forecast-row {
+        margin-top: 24px;
+        gap: 20px;
+    }
+
+    .datalens-wrapper iframe {
+        height: 400px;
+    }
+
+    .footer {
+        padding: 32px 14px;
+    }
+
+    .footer-logo img {
+        width: 30px;
+    }
+
+    .footer-logo span {
+        font-size: 20px;
+    }
+
+    .footer-col h4 {
+        font-size: 15px;
+    }
+
+    .footer-col p,
+    .footer-nav li a {
+        font-size: 13px;
+    }
+
+    .footer-bottom {
+        margin-top: 20px;
+        padding-top: 14px;
+    }
+
+    .footer-bottom p {
+        font-size: 12px;
+    }
 }
